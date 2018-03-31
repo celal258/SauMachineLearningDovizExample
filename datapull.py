@@ -18,17 +18,17 @@ class MyHTMLParser(HTMLParser):
                 parseAttr.append(attr[1])
 
 parser = MyHTMLParser()
-r = requests.get('http://www.tcmb.gov.tr/kurlar/kur2013_tr.html')
+r = requests.get('http://www.tcmb.gov.tr/kurlar/kur2013_tr.html')#Aylarin linklerinin olduğu sayfa
 parser.feed(r.text)
 monthAttr=[]
-monthAttr=parseAttr.copy()
-parseAttr.clear()
+monthAttr=parseAttr.copy()#a tag'dan faydalanarak linkleri alıyor.
+parseAttr.clear()#dizi tekrar kullanılmak üzere boşaltılıyor.
 f = open('data.csv', 'w') 
 f.write('Tarih,Doviz Alis,Doviz Satis,Efektif Alis,Efektif Satis\n');
 for moth in monthAttr:
     print('http://www.tcmb.gov.tr/kurlar/'+str(moth))
     r = requests.get('http://www.tcmb.gov.tr/kurlar/'+str(moth))
-    parser.feed(r.text)
+    parser.feed(r.text)#Ayın hesaplanan günleri çekiliyor.
     for parse in parseAttr:
         dovizxml = requests.get('http://www.tcmb.gov.tr'+parse)
         root = ET.fromstring(dovizxml.text)
