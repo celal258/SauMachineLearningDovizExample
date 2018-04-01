@@ -1,4 +1,2 @@
 # SauMachineLearningDovizExample
-=======
-# SauMachineLearningDovizExample
-Basit Lineer, Çoklu Lineer kullanarak doviz
+Basit Lineer, Polinom ,Destek Vektör, Karar Ağacı, Rastgele Orman kullanarak doviz tahmini
